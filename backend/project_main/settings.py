@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+REST_FRAMEWORK_TOKEN_EXPIRE_MINUTES = 24*60
+
 
 # Application definition
 
