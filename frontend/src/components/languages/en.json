@@ -1,0 +1,20 @@
+{
+    "nav": {
+        "home": "Home",
+        "calendar": "Calendar",
+        "projects": "Projects",
+        "language": "Language",
+        "en": "English",
+        "pl": "Polish",
+        "logout": "Logout"
+    },
+    "home": {
+        "title": "Home"
+    },
+    "calendar": {
+        "title": "Calendar"
+    },
+    "projects": {
+        "title": "Projects"
+    }
+}
