@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react'
 import login from './login.module.sass'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   useEffect(() => {
       document.title = 'Login'
   }, [])
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  axios.defaults.baseURL = 'http://localhost:8000';
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/get_token/', { username, password });
+      const response = await axios.post('/api/get_token/', { username, password });
       const token = response.data.token;
       localStorage.setItem('token', token);
       setMessage('Login successful');
-      
+      onLogin(true);
     } catch (error) {
       setMessage('Invalid username or password');
     }

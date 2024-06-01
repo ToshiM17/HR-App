@@ -1,0 +1,84 @@
+@import 'variables'
+header
+    background: $mainColor
+    position: sticky
+    top: 0
+    z-index: 100
+    display: flex
+    height: 60px
+    h1
+        color: white
+        margin: 0
+        padding: 10px
+    nav
+        margin-left: auto
+        display: flex
+        .link
+            color: white
+            text-decoration: none
+            font-weight: 600
+            padding: 10px
+            display: flex
+            align-items: center
+            &:hover
+                background: $secondaryColor
+                transition: 0.3s all ease
+        .logout
+            color: white
+            text-decoration: none
+            font-weight: 600
+            padding: 10px
+            border: none
+            background: $redColor
+            cursor: pointer
+            &:hover
+                background: $redColorHover
+                transition: 0.3s all ease
+        .menu
+            display: flex
+            justify-content: center
+            align-items: center
+            background: none
+            border: none
+            color: white
+            font-size: 40px
+            padding: 10px
+            margin-left: auto
+            cursor: pointer
+            &:hover
+                color: $secondaryColor
+                transition: 0.3s all ease
+        .nav
+            display: flex
+            flex-direction: column
+            align-items: center
+            height: 100vh
+            width: 50vw
+            position: fixed
+            top: 0
+            right: 0
+            background: $mainColor
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5)
+            animation: slideInRight 0.3s forwards
+            gap: 20px
+            .link
+                background: none
+                border: none
+                width: calc( 100% - 20px )
+                padding-left: 20px
+                font-size: 25px
+                gap: 10px
+                .icon
+                    width: 30px
+            button.link
+                width: calc( 100% + 10px )
+@keyframes slideInRight
+    from
+        transform: translateX(100%)
+    to
+        transform: translateX(0)
+@keyframes slideOutRight
+    from
+        transform: translateX(0)
+    to
+        transform: translateX(100%)
