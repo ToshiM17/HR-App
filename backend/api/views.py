@@ -12,6 +12,9 @@ from . authentication import ExpiringTokenAuthentication
 
 # Create your views here.
 
+def get_group_name(username: str):
+    return getattr(User.objects.get(username=username).groups.first(), "name", "users")
+
 
 class ObtainExpiringAuthToken(ObtainAuthToken):
     permission_classes = [~permissions.IsAuthenticated]
@@ -23,7 +26,12 @@ class ObtainExpiringAuthToken(ObtainAuthToken):
             Token.objects.filter(user=serializer.validated_data['user']).delete()
             token = Token.objects.create(user=serializer.validated_data['user'])
 
-            return Response({'token': token.key})
+            response = {
+                'token': token.key,
+                'group': get_group_name(serializer.validated_data['user']),
+            }
+
+            return Response(response)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class GetUsersView(APIView):
@@ -41,7 +49,7 @@ class TestTokenView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, format=None):
-        return Response(f"Token passed for: {request.user.username}")
+        return Response({'message': f"Token passed for {request.user.username}"})
     
 class DeleteTokenView(APIView):
     authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
@@ -49,4 +57,4 @@ class DeleteTokenView(APIView):
 
     def post(self, request, format=None):
         Token.objects.filter(user=request.user).delete()
-        return Response(f"Token deleted for: {request.user.username}")
+        return Response({'message': f"Token deleted for {request.user.username}"})
