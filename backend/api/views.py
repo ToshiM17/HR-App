@@ -8,7 +8,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from datetime import datetime, timezone
 
 from . serializers import UserSerializer
-from . authentication import ExpiringTokenAuthentication
+from . authentication import ExpiringTokenAuthentication, token_expired
 
 # Create your views here.
 
@@ -22,9 +22,12 @@ class ObtainExpiringAuthToken(ObtainAuthToken):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            # if old token exists delete it
-            Token.objects.filter(user=serializer.validated_data['user']).delete()
-            token = Token.objects.create(user=serializer.validated_data['user'])
+            # if token exists and didn't expire get the token
+            if token_expired(Token.objects.filter(user=serializer.validated_data['user']).first()):
+                token, created = Token.objects.update_or_create(user=serializer.validated_data['user'])
+                token.save()
+            else:
+                token = Token.objects.get(user=serializer.validated_data['user'])
 
             response = {
                 'token': token.key,
