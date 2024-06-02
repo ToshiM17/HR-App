@@ -4,7 +4,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Calendar from './components/Calendar';
 import Projects from './components/Projects';
-import Users from './components/Users';
+import Users from './components/admin/Users';
 import { LanguageProvider } from './components/languages/LanguageContext';
 import './components/styles/style.sass';
 import axios from 'axios';

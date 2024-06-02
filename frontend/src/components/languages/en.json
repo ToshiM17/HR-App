@@ -1,4 +1,9 @@
 {
+    "globals": {
+        "yes": "Yes",
+        "no": "No",
+        "cancel": "Cancel"
+    },
     "nav": {
         "home": "Home",
         "calendar": "Calendar",
@@ -21,10 +26,14 @@
     "users": {
         "title": "Users",
         "add": "Add user",
-        "edit": "Edit user",
-        "delete": "Delete user",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "username": "Username",
         "name": "Name",
         "surname": "Surname",
-        "group": "Group"
+        "group": "Group",
+        "email": "Email",
+        "deleteInfo": "Are you sure you want to delete this user?"
     }
 }

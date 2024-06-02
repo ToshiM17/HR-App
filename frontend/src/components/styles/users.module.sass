@@ -24,9 +24,31 @@
             flex-wrap: wrap
             gap: 10px
             padding: 10px
-            border: 1px solid #ccc
+            border: 1px solid $mainColor
             border-radius: 5px
             width: 100%
+            .name
+                display: flex
+                align-items: center
+                gap: 10px
+                min-width: fit-content
+                @media (max-width: 1023px)
+                    width: 100%
+                    justify-content: center
+                @media (min-width: 1024px) and (max-width: 1439px)
+                    width: 25%
+                @media (min-width: 1440px)
+                    width: 20%
+                .icon
+                    width: 30px
+                    align-items: left
+            .email
+                margin-left
+                @media (max-width: 1023px)
+                    width: 100%
+                    justify-content: center
+            h3
+                margin: 0
             @media (max-width: 1023px)
                 text-align: center
                 justify-content: center
@@ -37,20 +59,20 @@
                 margin-left: auto
                 @media (max-width: 1023px)
                     margin-left: 0
-            button
-                background: $mainColor
-                color: white
-                border: none
-                padding: 10px
-                border-radius: 5px
-                cursor: pointer
-                transition: 0.3s
-                &.delete
-                    background: $redColor
+                button
+                    background: $mainColor
+                    color: white
+                    border: none
+                    padding: 10px
+                    border-radius: 5px
+                    cursor: pointer
+                    transition: 0.3s
+                    &.delete
+                        background: $redColor
+                        &:hover
+                            background: $redColorHover
                     &:hover
-                        background: $redColorHover
-                &:hover
-                    background: $secondaryColor
+                        background: $secondaryColor
     .usersHeader
         display: flex
         button.addUser
