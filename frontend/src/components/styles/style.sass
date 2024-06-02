@@ -1,4 +1,8 @@
 @import 'variables'
+main
+    display: flex
+    width: 100vw
+    justify-content: center
 .popUpBox
     display: flex
     justify-content: center
@@ -90,48 +94,45 @@ header
             &:hover
                 background: $redColorHover
                 transition: 0.3s all ease
-        .menu
-            display: flex
-            justify-content: center
-            align-items: center
-            background: none
-            border: none
-            color: white
-            font-size: 40px
-            padding: 10px
-            margin-left: auto
-            cursor: pointer
-            &:hover
-                color: $secondaryColor
-                transition: 0.3s all ease
-        .nav
-            display: flex
-            flex-direction: column
-            align-items: center
-            height: 100vh
-            width: 50vw
-            position: fixed
-            top: 0
-            right: 0
-            background: $mainColor
-            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5)
-            animation: slideInRight 0.3s forwards
-            gap: 20px
-            .link
-                width: calc( 100% - 20px )
-                padding-left: 20px
-                font-size: 25px
-                gap: 10px
-                margin-left: 10px
-            button.link
-                width: calc( 100% + 10px )
-@keyframes slideInRight
-    from
-        transform: translateX(100%)
-    to
-        transform: translateX(0)
-@keyframes slideOutRight
-    from
-        transform: translateX(0)
-    to
-        transform: translateX(100%)
+        @media (max-width: 1023px)
+            .menu
+                display: flex
+                justify-content: center
+                align-items: center
+                background: none
+                border: none
+                color: white
+                font-size: 40px
+                padding: 10px
+                margin-left: auto
+                cursor: pointer
+                &:hover
+                    color: $secondaryColor
+                    transition: 0.3s all ease
+            .nav
+                display: flex
+                flex-direction: column
+                align-items: center
+                height: 100vh
+                width: 50vw
+                position: fixed
+                top: 0
+                right: 0
+                background: $mainColor
+                box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5)
+                animation: slideInRight 0.3s forwards
+                gap: 20px
+                .link
+                    width: calc( 100% - 20px )
+                    padding-left: 20px
+                    font-size: 18px
+                    gap: 10px
+                    margin-left: 10px
+                button.link
+                    width: calc( 100% + 10px )
+@media (max-width: 1023px)
+    @keyframes slideInRight
+        from
+            transform: translateX(100%)
+        to
+            transform: translateX(0)

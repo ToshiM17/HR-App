@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import login from './login.module.sass'
+import login from './styles/login.module.sass'
 import axios from 'axios'
 
 const Login = ({ onLogin }) => {
@@ -9,14 +9,15 @@ const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  axios.defaults.baseURL = 'http://localhost:8000';
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/get_token/', { username, password });
       const token = response.data.token;
+      const group = response.data.group;
       localStorage.setItem('token', token);
+      localStorage.setItem('group', group);
       setMessage('Login successful');
       onLogin(true);
     } catch (error) {

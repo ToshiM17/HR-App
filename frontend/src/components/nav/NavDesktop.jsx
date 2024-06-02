@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../languages/LanguageContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouseChimney, faCalendarDays, faListCheck, faRightFromBracket, faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { faHouseChimney, faCalendarDays, faListCheck, faRightFromBracket, faGlobe, faUsers } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 
 const NavDesktop = () => {
@@ -20,6 +20,7 @@ const NavDesktop = () => {
               }
             });
             localStorage.removeItem('token');
+            localStorage.removeItem('group');
             navigate('/login');
             window.location.reload();
           } catch (error) {
@@ -29,11 +30,30 @@ const NavDesktop = () => {
       };
   return (
     <nav>    
-        <Link to='/home' className='link'><FontAwesomeIcon icon={faHouseChimney} size="lg" className='icon' />{lang.nav.home}</Link>
-        <Link to='/calendar' className='link'><FontAwesomeIcon icon={faCalendarDays} size="lg" className='icon' />{lang.nav.calendar}</Link>
-        <Link to='/projects' className='link'><FontAwesomeIcon icon={faListCheck} size="lg" className='icon' />{lang.nav.projects}</Link>
-        <div onClick={() => setIsLang(true)} className='link'><FontAwesomeIcon icon={faGlobe} size="lg" className='icon' />{lang.nav.language}</div>
-        <div className='logout' onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} size="lg" className='icon' />{lang.nav.logout}</div>
+        <Link to='/home' className='link'>
+          <FontAwesomeIcon icon={faHouseChimney} size="lg" className='icon' />
+          {lang.nav.home}
+        </Link>
+        <Link to='/calendar' className='link'>
+          <FontAwesomeIcon icon={faCalendarDays} size="lg" className='icon' />
+          {lang.nav.calendar}
+        </Link>
+        <Link to='/projects' className='link'>
+          <FontAwesomeIcon icon={faListCheck} size="lg" className='icon' />
+          {lang.nav.projects}
+        </Link>
+        <Link to='/users' className='link'>
+            <FontAwesomeIcon icon={faUsers} size="lg" className='icon' />
+            {lang.nav.users}
+        </Link>
+        <div onClick={() => setIsLang(true)} className='link'>
+          <FontAwesomeIcon icon={faGlobe} size="lg" className='icon' />
+          {lang.nav.language}
+        </div>
+        <div className='logout' onClick={handleLogout}>
+          <FontAwesomeIcon icon={faRightFromBracket} size="lg" className='icon' />
+          {lang.nav.logout}
+        </div>
         {isLang && (
             <div className='popUpBox'>
                 <div className="popUpInfo">

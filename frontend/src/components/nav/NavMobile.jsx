@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faXmark, faRightFromBracket, faHouseChimney, faCalendarDays, faListCheck, faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faXmark, faRightFromBracket, faHouseChimney, faCalendarDays, faListCheck, faGlobe, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { useLanguage } from '../languages/LanguageContext'
 import axios from 'axios'
 
@@ -19,6 +19,7 @@ const NavMobile = () => {
               }
             });
             localStorage.removeItem('token');
+            localStorage.removeItem('group');
             navigate('/login');
             window.location.reload();
           } catch (error) {
@@ -27,17 +28,39 @@ const NavMobile = () => {
         }
       };
     const [isOpen, setIsOpen] = useState(false);
+    const isAdmin = localStorage.getItem('group') === 'admins';
   return (
     <nav>
         <button className='menu' onClick={() => setIsOpen(true)}><FontAwesomeIcon icon={faBars} /></button>
         {isOpen && (
             <div className='nav'>
                 <button className='menu' onClick={() => setIsOpen(false)}><FontAwesomeIcon icon={faXmark} /></button>
-                <Link to='/home' className='link'><FontAwesomeIcon icon={faHouseChimney} size="lg" className='icon' />{lang.nav.home}</Link>
-                <Link to='/calendar' className='link'><FontAwesomeIcon icon={faCalendarDays} size="lg" className='icon' />{lang.nav.calendar}</Link>
-                <Link to='/projects' className='link'><FontAwesomeIcon icon={faListCheck} size="lg"  className='icon' />{lang.nav.projects}</Link>
-                <div onClick={() => setIsLang(true)} className='link'><FontAwesomeIcon icon={faGlobe} size="lg" className='icon' />{lang.nav.language}</div>
-                <div className='link' onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} size="lg" className='icon' />{lang.nav.logout}</div>
+                <Link to='/home' className='link'>
+                    <FontAwesomeIcon icon={faHouseChimney} size="lg" className='icon' />
+                    {lang.nav.home}
+                </Link>
+                <Link to='/calendar' className='link'>
+                    <FontAwesomeIcon icon={faCalendarDays} size="lg" className='icon' />
+                    {lang.nav.calendar}
+                </Link>
+                <Link to='/projects' className='link'>
+                    <FontAwesomeIcon icon={faListCheck} size="lg"  className='icon' />
+                    {lang.nav.projects}
+                </Link>
+                {isAdmin && (
+                <Link to='/users' className='link'>
+                    <FontAwesomeIcon icon={faUsers} size="lg" className='icon' />
+                    {lang.nav.users}
+                </Link>
+                )}
+                <div onClick={() => setIsLang(true)} className='link'>
+                    <FontAwesomeIcon icon={faGlobe} size="lg" className='icon' />
+                    {lang.nav.language}
+                </div>
+                <div className='link' onClick={handleLogout}>
+                    <FontAwesomeIcon icon={faRightFromBracket} size="lg" className='icon' />
+                    {lang.nav.logout}
+                </div>
             </div>
         )}
         {isLang && (

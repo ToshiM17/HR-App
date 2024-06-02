@@ -4,6 +4,7 @@
         "calendar": "Calendar",
         "projects": "Projects",
         "language": "Language",
+        "users": "Users",
         "en": "English",
         "pl": "Polish",
         "logout": "Logout"
@@ -16,5 +17,14 @@
     },
     "projects": {
         "title": "Projects"
+    },
+    "users": {
+        "title": "Users",
+        "add": "Add user",
+        "edit": "Edit user",
+        "delete": "Delete user",
+        "name": "Name",
+        "surname": "Surname",
+        "group": "Group"
     }
 }
