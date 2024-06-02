@@ -20,7 +20,7 @@ class ObtainExpiringAuthToken(ObtainAuthToken):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # if old token exists delete it
-            Token.objects.get(user=serializer.validated_data['user']).delete()
+            Token.objects.filter(user=serializer.validated_data['user']).delete()
             token = Token.objects.create(user=serializer.validated_data['user'])
 
             return Response({'token': token.key})
