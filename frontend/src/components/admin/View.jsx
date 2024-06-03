@@ -6,21 +6,22 @@ const View = ({ setIsViewed, user }) => {
     return (
         <div className="popUpBox">
             <div className="popUpInfo">
+                <h2>{lang.users.view}</h2>
                 <div className="text">
                     <div className="textBox">
-                        <h3 className='left'>{lang.users.username}:</h3><h3>{user.username}</h3>
+                        <p className='left'>{lang.users.username}:</p><p>{user.username}</p>
                     </div>
                     <div className="textBox">
-                        <h3 className='left'>{lang.users.name}:</h3><h3>{user.first_name}</h3>
+                        <p className='left'>{lang.users.name}:</p><p>{user.first_name}</p>
                     </div>
                     <div className="textBox">
-                        <h3 className='left'>{lang.users.surname}:</h3><h3>{user.last_name}</h3>
+                        <p className='left'>{lang.users.surname}:</p><p>{user.last_name}</p>
                     </div>
                     <div className="textBox">
-                        <h3 className='left'>{lang.users.email}:</h3><h3>{user.email}</h3>
+                        <p className='left'>{lang.users.email}:</p><p>{user.email}</p>
                     </div>
                     <div className="textBox">
-                        <h3 className='left'>{lang.users.group}:</h3><h3>{user.group_name}</h3>
+                        <p className='left'>{lang.users.group}:</p><p>{user.group_name}</p>
                     </div>
                 </div>
                 <button onClick={() => setIsViewed(false)} className='close'>{lang.globals.cancel}</button>

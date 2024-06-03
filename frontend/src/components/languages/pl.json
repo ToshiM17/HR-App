@@ -2,7 +2,8 @@
     "globals": {
         "yes": "Tak",
         "no": "Nie",
-        "cancel": "Anuluj"
+        "cancel": "Anuluj",
+        "save": "Zapisz"
     },
     "nav": {
         "home": "Główna",

@@ -35,7 +35,28 @@ main
                 padding: 5px 0
                 .left
                     width: 100px
-        h3
+        form
+            display: flex
+            flex-direction: column
+            gap: 20px
+            width: 100%
+            justify-content: center
+            align-items: center
+            .column
+                width: 90%
+                display: flex
+                align-items: center
+                gap: 10px
+                label
+                    width: 35%                
+                input
+                    width: 65%
+                    padding: 5px
+                    border: 1px solid $mainColor
+                    border-radius: 5px
+                    &:focus
+                        outline: none
+        h2
             margin: 0
         p
             font-size: 20px

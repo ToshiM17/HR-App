@@ -2,7 +2,8 @@
     "globals": {
         "yes": "Yes",
         "no": "No",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "save": "Save"
     },
     "nav": {
         "home": "Home",

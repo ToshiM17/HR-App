@@ -26,7 +26,10 @@ const Users = () => {
               });
               setUserList(response.data);
             } catch (error) {
-              console.error('Failed to fetch users', error);
+                console.error('Failed to fetch users', error);
+                localStorage.removeItem('token');
+                localStorage.removeItem('group');
+                window.location.reload();
             }
           };
       
@@ -41,6 +44,14 @@ const Users = () => {
         setSelectedUser(user);
         setIsViewed(true);
     };
+    const handleEdit = (user) => {
+        setSelectedUser(user);
+        setIsEdited(true);
+    }
+    const handleDelete = (user) => {
+        setSelectedUser(user);
+        setIsDeleted(true);
+    }
     return (
         <>
             <Nav />
@@ -62,14 +73,14 @@ const Users = () => {
                                 <h3 className={users.email}>{user.email}</h3>
                                 <div className={users.btns}>
                                     <button onClick={() => handleView(user)}>{lang.users.view}</button>
-                                    <button onClick={() => setIsEdited(true)}>{lang.users.edit}</button>
-                                    <button  onClick={() => setIsDeleted(true)} className={users.delete}>{lang.users.delete}</button>
+                                    <button onClick={() => handleEdit(user)}>{lang.users.edit}</button>
+                                    <button  onClick={() => handleDelete(user)} className={users.delete}>{lang.users.delete}</button>
                                 </div>
                             </div>
                             ))}
                             {isViewed && <View setIsViewed={setIsViewed} user={selectedUser} />}
-                            {isEdited && <Edit setIsEdited={setIsEdited} />}
-                            {isDeleted && <Delete setIsDeleted={setIsDeleted} />}
+                            {isEdited && <Edit setIsEdited={setIsEdited} user={selectedUser} />}
+                            {isDeleted && <Delete setIsDeleted={setIsDeleted} user={selectedUser} />}
                     </div>
                 </div>
             </main>
