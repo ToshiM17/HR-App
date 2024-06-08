@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_framework import status, authentication, permissions
 from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -9,6 +10,8 @@ from datetime import datetime, timezone
 
 from . serializers import UserSerializer
 from . authentication import ExpiringTokenAuthentication, token_expired
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -46,6 +49,13 @@ class GetUsersView(APIView):
         serializer = UserSerializer(users, many=True)
 
         return Response(serializer.data)
+    
+class CreateUserView(CreateAPIView):
+    authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    model = User
+    serializer_class = UserSerializer
     
 class TestTokenView(APIView):
     authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
