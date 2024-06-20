@@ -25,19 +25,19 @@ const Users = () => {
     const fetchUsers = async () => {
         const token = localStorage.getItem('token');
         try {
-          const response = await axios.post('/api/get_users/', {}, {
-            headers: {
-              Authorization: `Token ${token}`
-            }
-          });
-          setUserList(response.data);
+            const response = await axios.get('/api/get_users/', {
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+            });
+            setUserList(response.data);
         } catch (error) {
             console.error('Failed to fetch users', error);
             localStorage.removeItem('token');
             localStorage.removeItem('group');
             window.location.reload();
         }
-      };
+    };
     const handleView = (user) => {
         setSelectedUser(user);
         setIsViewed(true);
@@ -77,7 +77,7 @@ const Users = () => {
                             </div>
                             ))}
                             {isViewed && <View setIsViewed={setIsViewed} user={selectedUser} />}
-                            {isEdited && <Edit setIsEdited={setIsEdited} user={selectedUser} />}
+                            {isEdited && <Edit setIsEdited={setIsEdited} user={selectedUser} refreshUsers={fetchUsers} />}
                             {isDeleted && <Delete setIsDeleted={setIsDeleted} user={selectedUser} refreshUsers={fetchUsers} />}
                     </div>
                 </div>
