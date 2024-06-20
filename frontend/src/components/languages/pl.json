@@ -22,7 +22,11 @@
         "title": "Kalendarz"
     },
     "projects": {
-        "title": "Projekty"
+        "title": "Projekty",
+        "add": "Dodaj projekt",
+        "liders": "Liderzy: ",
+        "description": "Opis: ",
+        "date": "Data: "
     },
     "users": {
         "title": "Użytkownicy",
@@ -31,10 +35,15 @@
         "edit": "Edytuj",
         "delete": "Usuń",
         "username": "Nazwa",
+        "password": "Hasło",
         "name": "Imię",
         "surname": "Nazwisko",
         "group": "Grupa",
         "email": "Email",
-        "deleteInfo": "Czy na pewno chcesz usunąć użytkownika?"
+        "deleteInfo": "Czy na pewno chcesz usunąć użytkownika?",
+        "deleteSuccess": "Użytkownik został usunięty.",
+        "deleteError": "Wystąpił błąd podczas usuwania użytkownika.",
+        "addSuccess": "Użytkownik został dodany.",
+        "addError": "Wystąpił błąd podczas dodawania użytkownika."
     }
 }

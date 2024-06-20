@@ -31,10 +31,15 @@
         "edit": "Edit",
         "delete": "Delete",
         "username": "Username",
+        "password": "Password",
         "name": "Name",
         "surname": "Surname",
         "group": "Group",
         "email": "Email",
-        "deleteInfo": "Are you sure you want to delete this user?"
+        "deleteInfo": "Are you sure you want to delete this user?",
+        "deleteSuccess": "User has been deleted successfully.",
+        "deleteError": "An error occurred while deleting user.",
+        "addSuccess": "User has been added successfully.",
+        "addError": "An error occurred while adding user."
     }
 }

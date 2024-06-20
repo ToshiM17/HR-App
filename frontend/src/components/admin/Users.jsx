@@ -13,33 +13,31 @@ import Delete from './Delete';
 const Users = () => {
     const { lang } = useLanguage();
     const [userList, setUserList] = useState([]);
-    useEffect(() => {
-        document.title = 'Users - HR App'
-
-        const fetchUsers = async () => {
-            try {
-              const token = localStorage.getItem('token');
-              const response = await axios.post('/api/get_users/', {}, {
-                headers: {
-                  Authorization: `Token ${token}`
-                }
-              });
-              setUserList(response.data);
-            } catch (error) {
-                console.error('Failed to fetch users', error);
-                localStorage.removeItem('token');
-                localStorage.removeItem('group');
-                window.location.reload();
-            }
-          };
-      
-          fetchUsers();
-    }, [])
     const [isAdded, setIsAdded] = useState(false);
     const [isViewed, setIsViewed] = useState(false);
     const [isEdited, setIsEdited] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    useEffect(() => {
+        document.title = 'Users - HR App'
+        fetchUsers();
+    }, [])
+    const fetchUsers = async () => {
+        const token = localStorage.getItem('token');
+        try {
+          const response = await axios.post('/api/get_users/', {}, {
+            headers: {
+              Authorization: `Token ${token}`
+            }
+          });
+          setUserList(response.data);
+        } catch (error) {
+            console.error('Failed to fetch users', error);
+            localStorage.removeItem('token');
+            localStorage.removeItem('group');
+            window.location.reload();
+        }
+      };
     const handleView = (user) => {
         setSelectedUser(user);
         setIsViewed(true);
@@ -60,7 +58,7 @@ const Users = () => {
                     <div className={users.usersHeader}>
                         <h1>{lang.users.title}</h1>
                         <button onClick={() => setIsAdded(true)} className={users.addUser}>{lang.users.add}</button>
-                        {isAdded && <AddUser setIsAdded={setIsAdded} />}
+                        {isAdded && <AddUser setIsAdded={setIsAdded} refreshUsers={fetchUsers} />}
                     </div>
                     <div className={users.usersList}>
                         {userList.map((user) => (
@@ -80,7 +78,7 @@ const Users = () => {
                             ))}
                             {isViewed && <View setIsViewed={setIsViewed} user={selectedUser} />}
                             {isEdited && <Edit setIsEdited={setIsEdited} user={selectedUser} />}
-                            {isDeleted && <Delete setIsDeleted={setIsDeleted} user={selectedUser} />}
+                            {isDeleted && <Delete setIsDeleted={setIsDeleted} user={selectedUser} refreshUsers={fetchUsers} />}
                     </div>
                 </div>
             </main>
