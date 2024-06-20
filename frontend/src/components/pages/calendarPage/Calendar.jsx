@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import Nav from './nav/Nav'
-import { useLanguage } from './languages/LanguageContext'
+import Nav from '../../nav/Nav'
+import { useLanguage } from '../../languages/LanguageContext'
 
 const Calendar = () => {
     const { lang } = useLanguage();

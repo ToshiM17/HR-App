@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import login from './styles/login.module.sass'
+import login from '../styles/login.module.sass'
 import axios from 'axios'
 
 const Login = ({ onLogin }) => {

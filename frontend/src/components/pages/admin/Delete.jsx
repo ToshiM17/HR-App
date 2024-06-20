@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useLanguage } from '../languages/LanguageContext';
+import { useLanguage } from '../../languages/LanguageContext';
 
 const Delete = ({ setIsDeleted, username, refreshUsers }) => {
   const { lang } = useLanguage();

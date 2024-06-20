@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLanguage } from '../languages/LanguageContext';
+import { useLanguage } from '../../languages/LanguageContext';
 
 const Edit = ({ setIsEdited, user }) => {
     const { lang } = useLanguage();

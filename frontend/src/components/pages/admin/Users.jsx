@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Nav from '../nav/Nav';
-import { useLanguage } from '../languages/LanguageContext';
-import users from '../styles/users.module.sass';
+import Nav from '../../nav/Nav';
+import { useLanguage } from '../../languages/LanguageContext';
+import users from '../../styles/users.module.sass';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGroup, faUserShield } from '@fortawesome/free-solid-svg-icons';

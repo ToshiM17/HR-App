@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react'
-import Nav from './nav/Nav'
-import { useLanguage } from './languages/LanguageContext'
-import projects from './styles/projects.module.sass'
+import React from 'react'
+import { useLanguage } from '../../languages/LanguageContext'
+import projects from '../../styles/projects.module.sass'
 
-const Projects = () => {
+const ProjectsList = ({ setIsProject }) => {
     const { lang } = useLanguage();
-    useEffect(() => {
-        document.title = 'Projects - HR App'
-    }, [])
+    const handleProject = () => {
+        console.log('Project clicked');
+        setIsProject(true);
+    }
   return (
-    <div>
-        <Nav />
+    <>
         <h1>{lang.projects.title}</h1>
         <main className={projects.projects}>
-            <div className={projects.projectBox}>
+            <div className={projects.projectBox} onClick={handleProject}>
                 <div className={projects.projectHeader}>
                     <h2>{lang.projects.title}</h2>
                 </div>
@@ -32,8 +31,8 @@ const Projects = () => {
           </div>
         ))}
         </main>
-    </div>
+    </>
   )
 }
 
-export default Projects
+export default ProjectsList

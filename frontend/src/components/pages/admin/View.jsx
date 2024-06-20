@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from '../languages/LanguageContext';
+import { useLanguage } from '../../languages/LanguageContext';
 
 const View = ({ setIsViewed, user }) => {
     const { lang } = useLanguage();

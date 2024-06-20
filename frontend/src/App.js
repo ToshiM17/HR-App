@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import Login from './components/Login';
-import Home from './components/Home';
-import Calendar from './components/Calendar';
-import Projects from './components/Projects';
-import Users from './components/admin/Users';
+import Login from './components/pages/Login';
+import Home from './components/pages/Home';
+import Calendar from './components/pages/calendarPage/Calendar';
+import Projects from './components/pages/projects/Projects';
+import Users from './components/pages/admin/Users';
 import { LanguageProvider } from './components/languages/LanguageContext';
 import './components/styles/style.sass';
 import axios from 'axios';

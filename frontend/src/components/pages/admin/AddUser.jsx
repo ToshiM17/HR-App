@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useLanguage } from '../languages/LanguageContext';
+import { useLanguage } from '../../languages/LanguageContext';
 
 const AddUser = ({ setIsAdded, refreshUsers }) => {
   const { lang } = useLanguage();
@@ -44,8 +44,13 @@ const AddUser = ({ setIsAdded, refreshUsers }) => {
     }
   };
 
+  const handlePopupClick = (e) => {
+    if (e.target.classList.contains('popUpBox')) {
+        setIsAdded(false);
+    }
+}
   return (
-    <div className="popUpBox">
+    <div className="popUpBox" onClick={handlePopupClick}>
       <div className="popUpInfo">
         <h2>{lang.users.addUser}</h2>
         {message && <p>{message}</p>}
