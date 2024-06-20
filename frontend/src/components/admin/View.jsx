@@ -3,8 +3,13 @@ import { useLanguage } from '../languages/LanguageContext';
 
 const View = ({ setIsViewed, user }) => {
     const { lang } = useLanguage();
+    const handlePopupClick = (e) => {
+        if (e.target.classList.contains('popUpBox')) {
+            setIsViewed(false);
+        }
+    }
     return (
-        <div className="popUpBox">
+        <div className="popUpBox" onClick={handlePopupClick}>
             <div className="popUpInfo">
                 <h2>{lang.users.view}</h2>
                 <div className="text">

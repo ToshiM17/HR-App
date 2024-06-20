@@ -20,8 +20,14 @@ const Delete = ({ setIsDeleted, username, refreshUsers }) => {
     }
   };
 
+  const handlePopupClick = (e) => {
+    if (e.target.classList.contains('popUpBox')) {
+        setIsDeleted(false);
+    }
+}
+
   return (
-    <div className="popUpBox">
+    <div className="popUpBox" onClick={handlePopupClick}>
       <div className="popUpInfo">
         <h2>{lang.users.deleteInfo}</h2>
         <button onClick={handleDelete} className='close'>{lang.globals.yes}</button>

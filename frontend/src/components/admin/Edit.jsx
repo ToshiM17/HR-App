@@ -12,8 +12,14 @@ const Edit = ({ setIsEdited, user }) => {
         setIsEdited(false);
     }
 
+    const handlePopupClick = (e) => {
+        if (e.target.classList.contains('popUpBox')) {
+            setIsEdited(false);
+        }
+    }
+
     return (
-        <div className="popUpBox">
+        <div className="popUpBox" onClick={handlePopupClick}>
             <div className="popUpInfo">
                 <h2>{lang.users.edit}</h2>
                 <form onSubmit={handleSubmit}>
