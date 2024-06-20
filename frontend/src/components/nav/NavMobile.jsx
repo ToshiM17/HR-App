@@ -29,6 +29,11 @@ const NavMobile = () => {
       };
     const [isOpen, setIsOpen] = useState(false);
     const isAdmin = localStorage.getItem('group') === 'admins';
+    const handlePopupClick = (e) => {
+      if (e.target.classList.contains('popUpBox')) {
+          setIsLang(false);
+      }
+  }
   return (
     <nav>
         <button className='menu' onClick={() => setIsOpen(true)}><FontAwesomeIcon icon={faBars} /></button>
@@ -64,7 +69,7 @@ const NavMobile = () => {
             </div>
         )}
         {isLang && (
-            <div className='popUpBox'>
+            <div className='popUpBox' onClick={handlePopupClick}>
                 <div className="popUpInfo">
                     <button onClick={() => {changeLanguage('en'); setIsLang(false);}}>{lang.nav.en}</button>
                     <button onClick={() => {changeLanguage('pl'); setIsLang(false);}}>{lang.nav.pl}</button>

@@ -28,6 +28,11 @@ const NavDesktop = () => {
           }
         }
       };
+      const handlePopupClick = (e) => {
+        if (e.target.classList.contains('popUpBox')) {
+            setIsLang(false);
+        }
+    }
   return (
     <nav>    
         <Link to='/home' className='link'>
@@ -55,7 +60,7 @@ const NavDesktop = () => {
           {lang.nav.logout}
         </div>
         {isLang && (
-            <div className='popUpBox'>
+            <div className='popUpBox' onClick={handlePopupClick}>
                 <div className="popUpInfo">
                     <button onClick={() => {changeLanguage('en'); setIsLang(false);}}>{lang.nav.en}</button>
                     <button onClick={() => {changeLanguage('pl'); setIsLang(false);}}>{lang.nav.pl}</button>
