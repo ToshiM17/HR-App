@@ -2,13 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import { useLanguage } from '../../languages/LanguageContext';
 
-const Delete = ({ setIsDeleted, username, refreshUsers }) => {
+const Delete = ({ setIsDeleted, user, refreshUsers }) => {
   const { lang } = useLanguage();
 
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`/api/delete_user/${username}/`, {
+      await axios.delete(`/api/delete_user/${user.id}`, {
         headers: {
           Authorization: `Token ${token}`,
         },

@@ -78,8 +78,8 @@ const AddUser = ({ setIsAdded, refreshUsers }) => {
           <div className="column">
             <label>{lang.users.group}</label>
             <select name="group_name" value={formData.group_name} onChange={handleChange}>
-              <option value="users">Users</option>
-              <option value="admins">Admins</option>
+              <option value="users">{lang.users.users}</option>
+              <option value="admins">{lang.users.admins}</option>
             </select>
           </div>
           <button type="submit">{lang.globals.save}</button>
