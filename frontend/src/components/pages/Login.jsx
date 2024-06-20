@@ -13,12 +13,7 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('/api/get_token/', {
-        params: {
-          username: username,
-          password: password,
-        },
-      });
+      const response = await axios.post('/api/get_token/', { username, password });
       const token = response.data.token;
       const group = response.data.group;
       localStorage.setItem('token', token);
@@ -28,7 +23,7 @@ const Login = ({ onLogin }) => {
     } catch (error) {
       setMessage('Invalid username or password');
     }
-  };
+  }
   return (
     <div className={login.login}>
         <h1>Login</h1>

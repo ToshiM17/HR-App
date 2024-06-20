@@ -14,7 +14,7 @@ const NavDesktop = () => {
         const token = localStorage.getItem('token');
         if (token) {
           try {
-            await axios.post('/api/delete_token/', {}, {
+            await axios.delete('/api/delete_token/', {
               headers: {
                 'Authorization': `Token ${token}`
               }
