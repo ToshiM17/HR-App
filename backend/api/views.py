@@ -27,8 +27,9 @@ class ObtainExpiringAuthToken(ObtainAuthToken):
         if serializer.is_valid():
             # if token exists and didn't expire get the token
             if token_expired(Token.objects.filter(user=serializer.validated_data['user']).first()):
-                token, created = Token.objects.update_or_create(user=serializer.validated_data['user'])
-                token.save()
+                # delete token for the user and create a new one
+                Token.objects.filter(user=serializer.validated_data['user']).delete()
+                token = Token.objects.create(user=serializer.validated_data['user'])
             else:
                 token = Token.objects.get(user=serializer.validated_data['user'])
 
