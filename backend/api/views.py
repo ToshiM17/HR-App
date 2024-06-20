@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework import status, authentication, permissions
 from rest_framework.views import APIView
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -22,7 +22,7 @@ def get_group_name(username: str):
 class ObtainExpiringAuthToken(ObtainAuthToken):
     permission_classes = [~permissions.IsAuthenticated]
 
-    def post(self, request):
+    def get(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # if token exists and didn't expire get the token
@@ -45,7 +45,7 @@ class GetUsersView(APIView):
     authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
 
@@ -57,18 +57,34 @@ class CreateUserView(CreateAPIView):
 
     model = User
     serializer_class = UserSerializer
+
+class EditUserView(UpdateAPIView):
+    authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.all()
+
+    model = User
+    serializer_class = UserSerializer
+
+class DeleteUserView(DestroyAPIView):
+    authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.all()
+
+    model = User
+    serializer_class = UserSerializer
     
 class TestTokenView(APIView):
     authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         return Response({'message': f"Token passed for {request.user.username}"})
     
 class DeleteTokenView(APIView):
     authentication_classes = [authentication.SessionAuthentication, ExpiringTokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, format=None):
+    def delete(self, request, format=None):
         Token.objects.filter(user=request.user).delete()
         return Response({'message': f"Token deleted for {request.user.username}"})
