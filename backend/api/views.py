@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 
 from . serializers import UserSerializer
 from . authentication import ExpiringTokenAuthentication, token_expired
+from . permission import IsInAdminsGroup
 
 User = get_user_model()
 
@@ -22,7 +23,7 @@ def get_group_name(username: str):
 class ObtainExpiringAuthToken(ObtainAuthToken):
     permission_classes = [~permissions.IsAuthenticated]
 
-    def get(self, request):
+    def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # if token exists and didn't expire get the token
